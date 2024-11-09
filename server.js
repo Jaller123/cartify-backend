@@ -10,9 +10,11 @@ connectDB(); //Connecting to MongoDB
 //Middleware
 app.use(cors());
 app.use(express.json());
+app.use('/images', express.static('/images'))
 
 //Routes
-app.use('/api/auth', require('./routes/auth'));
+app.use('/api/auth', require('./routes/authRoutes'));
+app.use('/api/products', require('./routes/products'));
 
 //Server Connection
 const PORT = process.env.PORT || 5000;

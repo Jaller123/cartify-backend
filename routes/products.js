@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router();
-
+const auth = require('../middleware/auth')
 
 const products = [
   {
@@ -53,7 +53,7 @@ const products = [
   }
 ];
 
-  router.get('/', (req, res) => {
+  router.get('/', auth, (req, res) => {
     res.json(products);
   });
 
@@ -67,6 +67,8 @@ const products = [
       res.status(404).send({  message: 'Products not found'})
     }
   });
+
+  
 
   module.exports = router;
   

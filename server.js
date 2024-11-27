@@ -3,7 +3,7 @@ const express = require('express');
 const connectDB = require('./config/db'); //The database file for MongoDB connection
 const cors = require('cors');
 const path = require('path');
-
+const auth = require('./middleware/auth')
 
 const app = express();
 connectDB(); //Connecting to MongoDB    
@@ -27,7 +27,7 @@ app.use('/images', express.static(path.join(__dirname, 'images')));
 
 //Routes
 app.use('/api/auth', require('./routes/authRoutes'));
-app.use('/api/products', require('./routes/products'));
+app.use('/api/products', auth, require('./routes/products'));
 
 
 //Server Connection
